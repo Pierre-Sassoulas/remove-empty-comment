@@ -11,7 +11,7 @@ Little pre-commit script that remove empty comments from your code
 
 ```yaml
 -   repo: https://github.com/Pierre-Sassoulas/remove-empty-comment/
-    rev: 0.0.1
+    rev: 1.0.0
     hooks:
     - id: remove-empty-comment
 ```

@@ -1,0 +1,5 @@
+-   id: remove-empty-comment
+    name: remove-empty-comment
+    entry: remove-empty-comment
+    language: python
+    'types': [python]

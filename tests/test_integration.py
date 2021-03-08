@@ -24,5 +24,5 @@ def test_transform():
         "    a = 1\n",
         "    b = 2\n",
         "    c = a + b\n",
-        "    print(c)\n"
+        "    print(c)\n",
     ]

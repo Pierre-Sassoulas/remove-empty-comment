@@ -29,7 +29,7 @@ def main(argv: Union[List[str], None] = None) -> int:
 
 def clean(file_name, offending_files):
     with open(file_name, encoding="utf8") as f:
-        content = f.readline()
+        content = f.readlines()
     new_content = transform(content)
     if len(new_content) != len(content):
         offending_files.append(file_name)
@@ -38,9 +38,9 @@ def clean(file_name, offending_files):
 
 
 def transform(content: List[str]) -> List[str]:
-    new_content:List[str] = []
+    new_content: List[str] = []
     for line in content:
-        if any(c!="#" for c in line.strip()):
+        if any(c != "#" for c in line.strip()):
             new_content.append(line)
     return new_content
 
