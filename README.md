@@ -11,7 +11,40 @@ Little pre-commit script that remove empty comments from your code
 
 ```yaml
 -   repo: https://github.com/Pierre-Sassoulas/remove-empty-comment/
-    rev: 1.0.1
+    rev: 1.0.2
     hooks:
     - id: remove-empty-comment
+```
+
+## Before
+
+```python
+
+###############
+# main function
+###############
+def main():
+    a = 1
+    b = 2
+    c = a + b
+
+    #
+
+    print(c)
+
+```
+
+## After
+
+```python
+
+# main function
+def main():
+    a = 1
+    b = 2
+    c = a + b
+
+
+    print(c)
+
 ```

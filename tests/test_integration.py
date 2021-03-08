@@ -19,10 +19,12 @@ def test_transform():
         content = f.readlines()
     new_content = transform(content)
     assert new_content == [
+        "\n",
         "# main function\n",
         "def main():\n",
         "    a = 1\n",
         "    b = 2\n",
         "    c = a + b\n",
+        "\n", "\n",
         "    print(c)\n",
     ]

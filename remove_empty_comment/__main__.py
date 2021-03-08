@@ -40,7 +40,7 @@ def clean(file_name, offending_files):
 def transform(content: List[str]) -> List[str]:
     new_content: List[str] = []
     for line in content:
-        if any(c != "#" for c in line.strip()):
+        if not line.strip() or any(c != "#" for c in line.strip()):
             new_content.append(line)
     return new_content
 

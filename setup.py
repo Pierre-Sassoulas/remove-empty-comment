@@ -9,7 +9,7 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     name="remove-empty-comment",
-    version="1.0.1",
+    version="1.0.2",
     packages=["remove_empty_comment"],
     entry_points={"console_scripts": ["remove-empty-comment=remove_empty_comment.__main__:main"]},
     install_requires=[],
