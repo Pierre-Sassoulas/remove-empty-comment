@@ -22,7 +22,7 @@ def main(argv: Union[List[str], None] = None) -> int:
         except UnicodeDecodeError:
             pass
     if offending_files:
-        print(f"Removed comments from {', '.join(offending_files)}.")
+        print(f"Removed empty comments from {', '.join(offending_files)}.")
         sys.exit(-1)
     sys.exit(0)
 
