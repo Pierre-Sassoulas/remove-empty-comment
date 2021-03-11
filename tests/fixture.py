@@ -1,3 +1,4 @@
+import argparse
 
 ###############
 # main function
@@ -10,3 +11,12 @@ def main():
     #
 
     print(c)
+
+
+# ARGUMENTS
+# =========
+parser = argparse.ArgumentParser()
+
+# Checking-inputs
+# ------------------------------------
+print(parser)

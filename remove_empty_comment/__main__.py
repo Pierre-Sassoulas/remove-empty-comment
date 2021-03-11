@@ -14,11 +14,17 @@ def main(argv: Union[List[str], None] = None) -> int:
         metavar="FILES",
         help="File names to modify",
     )
+    parser.add_argument(
+        "-c",
+        "--meaningless-characters",
+        default=["#", "-", "=", " "],
+        help="Characters that have no meaning alone." " If there are alone in a comment, it will be removed.",
+    )
     args = parser.parse_args(argv)
     offending_files = []
     for file_name in args.filenames:
         try:
-            clean(file_name, offending_files)
+            clean(file_name, offending_files, args.meaningless_characters)
         except UnicodeDecodeError:
             pass
     if offending_files:
@@ -27,20 +33,20 @@ def main(argv: Union[List[str], None] = None) -> int:
     sys.exit(0)
 
 
-def clean(file_name, offending_files):
+def clean(file_name, offending_files, meaningless_characters):
     with open(file_name, encoding="utf8") as f:
         content = f.readlines()
-    new_content = transform(content)
+    new_content = transform(content, meaningless_characters)
     if len(new_content) != len(content):
         offending_files.append(file_name)
     with open(file_name, "w", encoding="utf8") as f:
         f.writelines(new_content)
 
 
-def transform(content: List[str]) -> List[str]:
+def transform(content: List[str], meaningless_characters) -> List[str]:
     new_content: List[str] = []
     for line in content:
-        if not line.strip() or any(c != "#" for c in line.strip()):
+        if not line.strip() or any(c not in meaningless_characters for c in line.strip()):
             new_content.append(line)
     return new_content
 
