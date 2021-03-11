@@ -17,14 +17,14 @@ def main(argv: Union[List[str], None] = None) -> int:
     parser.add_argument(
         "-c",
         "--meaningless-characters",
-        default=["#", "-", "=", " "],
-        help="Characters that have no meaning alone." " If there are alone in a comment, it will be removed.",
+        default=["-", "=", " "],
+        help=("Characters that have no meaning alone." " If there are alone in a comment, it will be removed."),
     )
     args = parser.parse_args(argv)
     offending_files = []
     for file_name in args.filenames:
         try:
-            clean(file_name, offending_files, args.meaningless_characters)
+            clean(file_name, offending_files, list(args.meaningless_characters))
         except UnicodeDecodeError:
             pass
     if offending_files:
@@ -46,7 +46,8 @@ def clean(file_name, offending_files, meaningless_characters):
 def transform(content: List[str], meaningless_characters) -> List[str]:
     new_content: List[str] = []
     for line in content:
-        if not line.strip() or any(c not in meaningless_characters for c in line.strip()):
+        stripped = line.strip()
+        if not stripped or stripped[0] != "#" or any(c not in meaningless_characters + ["#"] for c in line.strip()):
             new_content.append(line)
     return new_content
 
